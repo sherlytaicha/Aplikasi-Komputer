@@ -1,0 +1,397 @@
+﻿% * SUBTOPIK 6 BAGIAN 2 | MENGGAMBAR GRAFIK STATISTIKA
+% 
+% Nama : Sherlyta Icha Nadiastuty
+%% NIM : 22305141013
+%% Kelas : Matematika B 2022
+% 
+% * Diagram titik
+% 
+% Diagram titik atau disebut juga sebagai scatter plot, adalah jenis
+% diagram statistik yang menggunakan titik-titik untuk merepresentasikan
+% nilai dari dua variabel yang berbeda. Setiap titik dalam diagram
+% pencar mewakili satu pengamatan atau data dengan nilai-nilai yang
+% sesuai untuk kedua variabel tersebut.
+% 
+% Scatter plot sangat berguna untuk menemukan pola atau hubungan antara
+% dua variabel, serta untuk mengevaluasi distribusi data.
+% 
+% Dalam scatter plot, sumbu horizontal umumnya digunakan untuk variabel
+% independen (bebas), sedangkan sumbu vertikal digunakan untuk variabel
+% dependen (bergantung). Dengan mengamati pola penyebaran titik-titik,
+% kita mendapatkan wawasan tentang apakah ada korelasi antara dua
+% variabel dan jenis korelasi apa yang mungkin ada (positif, negatif,
+% atau tidak ada korelasi).
+% 
+% ** Berikut contoh menggambar diagram titik di EMT
+% 
+% Contoh 1
+%% Pada contoh ini, kita akan menggambar diagram titik dengan menggunakan
+% fungsi plot2d().
+>x=normal(1,100); 
+>plot2d(x,x+rotright(x),>points,style=".."):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-001.png
+% Terdapat banyak style titik yang dapat kita dunakan, yaitu:
+%% "[]", "<>", ".", "..", "...","*", "+", "|", "-", "o",
+%% "[]#", "<>#", "o#" (bentuk terisi)
+%% "[]w", "<>w", "ow" (tidak transparan)
+% 
+% Selanjutnya, akan kita coba gambarkan diagram tersebut menggunakan
+% fungsi statplot(), pilih plottype="p" (karena kita akan menggambar
+% plot titik).
+>statplot(x,x+rotright(x),plottype="p",pstyle=".."):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-002.png
+% Contoh 2
+%% Pada contoh ini, akan kita gambarkan diagram titik menggunakan fungsi
+% scatterplot().
+>{MS,hd}:=readtable("table1.dat",tok2:=["m","f"]);
+>writetable(MS,labc=hd,tok2:=["m","f"]);
+    Person       Sex       Age    Mother    Father  Siblings
+         1         m        29        58        61         1
+         2         f        26        53        54         2
+         3         m        24        49        55         1
+         4         f        25        56        63         3
+         5         f        25        49        53         0
+         6         f        23        55        55         2
+         7         m        23        48        54         2
+         8         m        27        56        58         1
+         9         m        25        57        59         1
+        10         m        24        50        54         1
+        11         f        26        61        65         1
+        12         m        24        50        52         1
+        13         m        29        54        56         1
+        14         m        28        48        51         2
+        15         f        23        52        52         1
+        16         m        24        45        57         1
+        17         f        24        59        63         0
+        18         f        23        52        55         1
+        19         m        24        54        61         2
+        20         f        23        54        55         1
+>scatterplots(tablecol(MS,3:5),hd[3:5]):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-003.png
+>
+>
+% * Diagram Garis
+% 
+% Diagram garis adalah penyajian data yang digunakan untuk menggambarkan
+% suatu keadaan berupa data berkala atau berkelanjutan.
+% 
+% Selain itu, diagram ini juga bisa dikatakan berhubungan dengan kurun
+% waktu dan untuk menunjukkan perkembangan suatu keadaan.
+% 
+% Diagram ini sangat tepat untuk menyajikan data untuk mengetahui
+% kecenderungan kelakuan atau tren, seperti produksi minyak tiap tahun,
+% jumlah kelahiran tiap tahun, jumlah produksi tiap jam, dan lain-lain.
+% 
+% Dalam diagram garis, terdapat sumbu vertikal (sumbu y) untuk
+% menunjukkan frekuensi dan sumbu horizontal (sumbu x) untuk menunjukkan
+% variabel tertentu.
+% 
+% ** Berikut contoh menggambar diagram garis di EMT
+% 
+% Contoh 1
+%% Akan digambarkan diagram garis data banyaknya pelanggan di toko A
+% tahun 2015-2023.
+% 
+% Kita deskripsikan terlebih dahulu matriks x dan y,kemudian akan kita
+% buat tabel datanya.
+>x=[2015,2016,2017,2018,2019,2020,2021,2022,2023]; y=[600,500,900,1000,800,850,900,1000,1200];
+>writetable(x'|y',labc=["Tahun","Banyak Pelanggan"])
+     Tahun Banyak Pelanggan
+      2015              600
+      2016              500
+      2017              900
+      2018             1000
+      2019              800
+      2020              850
+      2021              900
+      2022             1000
+      2023             1200
+% Selanjutnya, akan digambarkan diagram garis dengan menggunakan fungsi
+% statplot, dengan format:
+% 
+% statplot (x, y, plottype="l", lstyle="-", xl="", yl="", color=none,
+% vertical=0)
+% 
+% x : data untuk sumbu x
+%% y : data untuk sumbu y
+%% plotstyle : "l" (kita pilih style "l" karena berupa plot garis)
+%% lstyle : style garis
+%% xl : label sumbu x
+%% yl : label sumbu y
+%% color : warna garis
+%% vertikal : vertikal
+% 
+% Style garis:
+%% "-", "--", "-.", ".", ".-.", "-.-", "->"
+>statplot(x,y,plottype="l",lstyle="-",xl="Tahun",yl="Banyak Pelanggan",vertical=50):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-004.png
+% Kita juga bisa menambahkan judul pada grafik dengan menggunakan fungsi
+% title().
+>title("Grafik Banyaknya Pelanggan Toko A Tahun 2015-2023"):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-005.png
+% Menyajikan data dalam bentuk diagram dapat memudahkan pembaca untuk
+% memahami data yang disajikan.
+% 
+% Dari diagram garis diatas, dapat kita peroleh informasi bahwa:
+%% Banyaknya pelanggan di toko A tidak tetap (naik-turun)untuk setiap
+% tahunnya.
+%% Banyaknya pelanggan paling sedikit pada tahun 2016 yaitu sebanyak 500
+% pelanggan, sedangkan banyak pelanggan paling banyak pada tahun 2023
+% yaitu sebanyak 1200 pelanggan.
+% 
+% Selain menggunakan fungsi statplot, kita juga dapat menggambar diagram
+% garis menggunakan fungsi plot2d() seperti yang sudah pernah kita
+% pelajari sebelumnya, yaitu sebagai berikut.
+>plot2d(x,y,a=2015,b=2023,c=500,d=1500,style="_",xl="Tahun",yl="Banyak Pelanggan",vertical=50); title("Grafik Banyak Pelanggan Toko A Tahun 2015-2023"):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-006.png
+% a dan b : batas untuk sumbu x
+%% c dan d : batas untuk sumbu y
+%% style : gaya garis
+%% xl : label untuk sumbu x
+%% yl : label untuk sumbu y
+>
+% Selain kita dapat menggambarkan diagram garis saja atau diagram titik
+% saja, kita juga dapat menggambarkan diagram keduanya.
+% 
+% Contoh 2
+%% Akan kita gambar diagram titik dan garis data hasil pemilu Jerman dari
+% tahun 1990 sampai 2013, diukur dalam kursi.
+>BW := [ ...
+>1990,662,319,239,79,8,17; ...
+>1994,672,294,252,47,49,30; ...
+>1998,669,245,298,43,47,36; ...
+>2002,603,248,251,47,55,2; ...
+>2005,614,226,222,61,51,54; ...
+>2009,622,239,146,93,68,76; ...
+>2013,631,311,193,0,63,64];
+>P:=["CDU/CSU","SPD","FDP","Gr","Li"]; 
+>BT:=BW[,3:7]; BT:=BT/sum(BT); YT:=BW[,1]';
+>writetable(BT*100,wc=6,dc=0,>fixed,labc=P,labr=YT)
+       CDU/CSU   SPD   FDP    Gr    Li
+  1990      48    36    12     1     3
+  1994      44    38     7     7     4
+  1998      37    45     6     7     5
+  2002      41    42     8     9     0
+  2005      37    36    10     8     9
+  2009      38    23    15    11    12
+  2013      49    31     0    10    10
+>BT1:=(BT.[1;1;0;0;0])'*100
+[84.29,  81.25,  81.1659,  82.7529,  72.9642,  61.8971,  79.8732]
+% Akan kita gambarkan plot statistik sederhana, yaitu plot titik dan
+% garis secara bersamaan dengan menggunakan fungsi statplot dan pilih
+% plottype="b".
+>statplot(YT,BT1,"b"):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-007.png
+>CP:=[rgb(0.5,0.5,0.5),red,yellow,green,rgb(0.8,0,0)];
+% Untuk menggabungkan deretan data statistik dalam satu plot, dapat kita
+% digunakan fungsi dataplot().
+>J:=BW[,1]'; DP:=BW[,3:7]'; ...
+>dataplot(YT,BT',color=CP);  ...
+>labelbox(P,colors=CP,styles="[]",>points,w=0.2,x=0.3,y=0.4):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-008.png
+% Contoh 3
+%% Akan digambarkan diagram titik dan garis dari data hasil panen padi
+% pada tahun 2016 sampai 2020.
+>T=[2016,2017,2018,2019,2020,2021]; P=[70,50,40,30,50,60];
+>writetable(T'|P',labc=["Tahun","Hasil Panen Padi (Ton)"])
+     Tahun Hasil Panen Padi (Ton)
+      2016                     70
+      2017                     50
+      2018                     40
+      2019                     30
+      2020                     50
+      2021                     60
+>statplot(T,P,"b",pstyle="o#",lstyle="-",xl="Tahun",yl="Hasil Panen Padi (Ton)",vertical=50);
+>title("Grafik Hasil Panen Padi Tahun 2016-2020"):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-009.png
+% Kita juga menggambar diagram titik dan garis secara bersama dengan
+% menggunakan fungsi plot2d(), yaitu sebagai berikut.
+>plot2d(T,P,2016,2020); plot2d(T,P,>points,style="o#",>add); title("Grafik Hasil Panen Padi Tahun 2016-2020"):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-010.png
+% Dari grafik di atas, dapat dengan mudah kita ketahui bahwa panen padi
+% paling banyak yaitu pada tahun 2016 (70 ton) dan paling sedikit yaitu
+% pada tahun 2019 (30 ton).
+% 
+% * Kurva Regresi
+% 
+% Kurva regresi adalah representasi grafis dari model regresi yang
+% digunakan untuk memodelkan hubungan antara satu atau lebih variabel
+% independen (biasanya dilambangkan sebagai (X) dan variabel dependen
+% (Y). Kurva regresi ini mencoba untuk menunjukkan pola atau tren dalam
+% data dan memungkinkan kita untuk membuat prediksi atau estimasi
+% berdasarkan model tersebut.
+%% Secara umum, terdapat dua jenis kurva regresi yang umum digunakan
+% yaitu regresi linier dan regresi non-linier.
+% 
+% Regresi Linier adalah garis lurus yang digunakan untuk memodelkan
+% hubungan antara variabel independen (X) dan variabel dependen (Y).
+% 
+% Persamaan regresi linier umumnya ditulis sebagai
+%% latex: Y=mX+b
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-011.png
+% // latex: Y=mX+b
+%% di mana m adalah kemiringan (slope) dan b adalah perpotongan sumbu-y
+% (intercept).
+% 
+% Regresi linier dapat dilakukan dengan fungsi polyfit () atau berbagai
+% fungsi fit.
+% 
+% Sebagai permulaan kita menemukan garis regresi untuk data univariat
+% dengan polyfit(x, y, 1).
+% 
+% ** Berikut contoh menggambar kurva regresi di EMT
+% 
+% Contoh 1
+>x=1:10; y=[2,3,1,5,6,3,7,8,9,8]; writetable(x'|y',labc=["x","y"])
+         x         y
+         1         2
+         2         3
+         3         1
+         4         5
+         5         6
+         6         3
+         7         7
+         8         8
+         9         9
+        10         8
+>p=polyfit(x,y,1)
+[0.733333,  0.812121]
+>w &= "exp(-(x-10)^2/10)"; pw=polyfit(x,y,1,w=w(x))
+[4.71566,  0.38319]
+>figure(2,1); ...
+>figure(1); statplot(x,y,"p",xl="Regression"); ...
+>  plot2d("evalpoly(x,p)",>add,color=blue,style="--"); ...
+>  plot2d("evalpoly(x,pw)",5,10,>add,color=red,style="--"); ...
+>figure(2); plot2d(w,1,10,>filled,style="/",fillcolor=red,xl=w); ...
+>figure(0):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-012.png
+>
+>
+>
+>
+>
+>
+>
+% * Kurva Fungsi Kerapatan Probabilitas
+% 
+% Fungsi kerapatan/kepadatan probabilitas adalah fungsi yang memberikan
+% kemungkinan bahwa nilai suatu variabel acak akan berada di antara
+% rentang nilai tertentu.
+% 
+% Grafik fungsi kepadatan probabilitas berbentuk kurva lonceng. Area
+% yang terletak di antara dua nilai tertentu memberikan probabilitas
+% hasil observasi yang ditentukan.
+% 
+% Berikut contoh kurva fungsi kepadatan probabolitas.
+>plot2d("qnormal(x,1,1.5)",-4,6);
+>plot2d("qnormal(x,1,1.5)",a=2,b=5,>add,>filled):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-013.png
+% Probabilitas variabel acak x yang terletak antara 2 dan 5 memenuhi
+%% P(2<X<5)= luas daerah hijau
+>
+>
+>
+% * Kurva Distribusi Kumulatif
+% 
+% Kurva distribusi kumulatif (CDF) adalah representasi kumulatif dari
+% fungsi distribusi probabilitas suatu variabel acak. CDF memberikan
+% probabilitas bahwa variabel acak tersebut kurang dari atau sama dengan
+% suatu nilai tertentu.
+% 
+% Seringkali, grafik CDF disajikan dalam bentuk kurva monotonik yang
+% terus meningkat, dan ini memberikan gambaran visual yang baik tentang
+% distribusi probabilitas variabel acak.
+% 
+% ** Berikut menggambar kurva distribusi kumulatif di EMT
+% 
+% Contoh 1
+>plot2d("normaldis",-4,4): 
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-014.png
+% Dapat kita lihat dalam kurva CDF kontinu di atas dibagi menjadi 3
+% bagian, yaitu:
+%% 1. Bernilai 0 untuk x kurang dari batas bawah daerah rentang.
+%% 2. Merupakan fungsi monoton naik pada daerah rentang.
+%% 3. Bernilai konstan 1 untuk x lebih dari batas atas daerah rentangnya.
+% 
+% Contoh 2
+%% Diberikan variabel acak dengan PDF sebagai berikut:
+% 
+% latex: f(x) = \begin{cases} \frac{6}{5}(x^2+x) & 0\le x\le 1 \\ 0 & \text{x yang lain}. \end{cases}
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-015.png
+% // latex: f(x) = \begin{cases} \frac{6}{5}(x^2+x) & 0\le x\le 1 \\ 0 & \text{x yang lain}. \end{cases}
+% 
+% Untuk menggambar grafik CDF-nya, pertama kita cari terlebih dahulu CDF
+% dari fungsi tersebut.
+% 
+% Untuk x pada interval
+%% latex: (- \infty,x)
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-016.png
+% // latex: (- \infty,x)
+%% latex: F(x)= \int_{- \infty}^{x} f(x)\ dx
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-017.png
+% // latex: F(x)= \int_{- \infty}^{x} f(x)\ dx
+%% latex: F(x)= \int_{- \infty}^{x} 0\ dx
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-018.png
+% // latex: F(x)= \int_{- \infty}^{x} 0\ dx
+%% latex: F(x)= 0
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-019.png
+% // latex: F(x)= 0
+% 
+% Untuk x pada interval [0,1]
+%% latex: F(x)= \int_{- \infty}^{x} f(x)\ dx
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-020.png
+% // latex: F(x)= \int_{- \infty}^{x} f(x)\ dx
+%% latex: F(x)= \int_{- \infty}^{0} f(x)\ dx + \int_{0}^{x} f(x)\ dx
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-021.png
+% // latex: F(x)= \int_{- \infty}^{0} f(x)\ dx + \int_{0}^{x} f(x)\ dx
+%% latex: F(x)= \int_{- \infty}^{0} 0\ dx + \int_{0}^{x} \frac{6}{5} (x^2+x)\ dx
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-022.png
+% // latex: F(x)= \int_{- \infty}^{0} 0\ dx + \int_{0}^{x} \frac{6}{5} (x^2+x)\ dx
+%% latex: F(x) = 0 + \frac{6}{5}(\frac{x^3}{3} + \frac{x^2}{2})
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-023.png
+% // latex: F(x) = 0 + \frac{6}{5}(\frac{x^3}{3} + \frac{x^2}{2})
+%% latex: F(x) = \frac{6}{5}(\frac{x^3}{3} + \frac{x^2}{2})
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-024.png
+% // latex: F(x) = \frac{6}{5}(\frac{x^3}{3} + \frac{x^2}{2})
+% 
+% Untuk x pada interval
+%% latex: (1, \infty)
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-025.png
+% // latex: (1, \infty)
+%% latex: F(x)= \int_{- \infty}^{x} f(x)\ dx
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-026.png
+% // latex: F(x)= \int_{- \infty}^{x} f(x)\ dx
+%% latex: F(x)= \int_{- \infty}^{0} f(x)\ dx + \int_{0}^{1} f(x)\ dx + \int_{1}^{x} f(x)\ dx
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-027.png
+% // latex: F(x)= \int_{- \infty}^{0} f(x)\ dx + \int_{0}^{1} f(x)\ dx + \int_{1}^{x} f(x)\ dx
+%% latex: F(x)= \int_{- \infty}^{0} 0\ dx + \int_{0}^{1} \frac{6}{5} (x^2+x)\ dx +  \int_{1}^{\infty} 0\ dx
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-028.png
+% // latex: F(x)= \int_{- \infty}^{0} 0\ dx + \int_{0}^{1} \frac{6}{5} (x^2+x)\ dx +  \int_{1}^{\infty} 0\ dx
+%% latex: F(x) = 0 + \frac{6}{5} (\frac{1^3}{3} + \frac{1^2}{2}) + 0
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-029.png
+% // latex: F(x) = 0 + \frac{6}{5} (\frac{1^3}{3} + \frac{1^2}{2}) + 0
+%% latex: F(x) = \frac{6}{5} \frac{5}{6} = 1
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-030.png
+% // latex: F(x) = \frac{6}{5} \frac{5}{6} = 1
+% 
+% Sehingga, diperoleh CDF :
+%% latex: F(x) = \begin{cases} 0 & x<0 \\ \frac{6}{5}(\frac{x^3}{3} + \frac{x^2}{2}) & 0\le x\le 1 \\ 1 & x>1. \end{cases}
+% %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-031.png
+% // latex: F(x) = \begin{cases} 0 & x<0 \\ \frac{6}{5}(\frac{x^3}{3} + \frac{x^2}{2}) & 0\le x\le 1 \\ 1 & x>1. \end{cases}
+% 
+% Selanjutnya, akan kita gambarkan grafik CDF tersebut di EMT.
+%% Pertama, kita definisikan terlebih dahulu fungsi f(x) dengan
+% menggunakan fungsi function map.
+>
+>function map f(x) ...
+$  if x<0 then return 0
+$  else if x>=0 and x<=1 then return (6/5)*((x^3/3)+(x^2/2))
+$  else return 1
+$  endif;
+$endfunction
+% Kemudian, kita akan menggambar grafik fungsi di atas dengan
+% menggunakan fungsi plot2d() pada interval x dari -1 sampai 2.
+>plot2d("f(x)",-1,2):
+ %image% EMTStatistika_SUB6_22305141013_Sherlyta Icha-032.png
+>
+>
